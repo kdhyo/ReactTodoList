@@ -21,25 +21,19 @@ class App extends React.Component {
 
   handleChange = (e) => {
     let obj = e.target.name;
-    console.log(e);
     this.setState({
       [obj]: e.target.value,
     });
+    console.log(`입력 값: ${e.target.value}`);
+    console.log(`저장 값: ${this.state.title}`);
   };
 
-  DateChange = (e) => {
-    console.log(e);
+  changePickerData(target, value) {
+    console.log(value);
     this.setState({
-      startDate: e,
+      [target]: value,
     });
-  };
-
-  TimeChange = (e) => {
-    console.log(e);
-    this.setState({
-      startTime: e,
-    });
-  };
+  }
 
   render() {
     return (
@@ -52,7 +46,7 @@ class App extends React.Component {
         >
           <TextField
             label="제목"
-            size="normal"
+            size="small"
             margin="normal"
             name="title"
             value={this.state.title}
@@ -62,7 +56,7 @@ class App extends React.Component {
           />
           <TextField
             label="상세내용"
-            size="normal"
+            size="small"
             margin="normal"
             name="content"
             fullWidth
@@ -72,9 +66,8 @@ class App extends React.Component {
           <KeyboardDatePicker
             disableToolbar
             placeholder="10/10/2018"
-            name="startDate"
             value={this.state.startDate}
-            onChange={this.DateChange}
+            onChange={this.changePickerData.bind(this, "startDate")}
             variant="inline"
             format="yyyy/MM/DD"
             margin="normal"
@@ -86,13 +79,11 @@ class App extends React.Component {
             margin="normal"
             label="시작시간"
             variant="inline"
-            name="startTime"
             format="LT"
-            value={this.state.startDate}
-            onChange={this.TimeChange}
+            value={this.state.startTime}
+            onChange={this.changePickerData.bind(this, "startTime")}
             style={{ width: "50%" }}
             KeyboardButtonProps={{ "aria-label": "change time" }}
-            locale="ko"
           />
         </Paper>
         <div className="list_area">리스트 영역</div>
