@@ -21,11 +21,12 @@ class App extends React.Component {
 
   handleChange = (e) => {
     let obj = e.target.name;
+    console.log(e.target);
     this.setState({
       [obj]: e.target.value,
     });
     console.log(`입력 값: ${e.target.value}`);
-    console.log(`저장 값: ${this.state.title}`);
+    console.log(`저장 값: ${[this.state.content]}`);
   };
 
   changePickerData(target, value) {
@@ -59,6 +60,7 @@ class App extends React.Component {
             size="small"
             margin="normal"
             name="content"
+            value={this.state.content}
             fullWidth
             required
             onChange={this.handleChange}
